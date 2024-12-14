@@ -5,6 +5,7 @@ FeastFlow is a modern canteen ordering system that allows users to browse menu i
 
 ## Deployment Link
 Frontend Application: [FeastFlow](https://github.com/NanaBz/feastflow-frontend)
+I'm not entirely sure if the frontend works individually because the backend is in a seperate repository so this is the backend: https://github.com/NanaBz/Exam
 
 ## Login Details
 Test credentials for accessing the system:
