@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -108,32 +109,71 @@ function Cart() {
     } finally {
       setLoading(false);
     }
+=======
+import React, { useState, useEffect } from 'react';
+
+function Cart() {
+  const [cartItems, setCartItems] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    // Calculate total when cart items change
+    const newTotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    setTotal(newTotal);
+  }, [cartItems]);
+
+  const updateQuantity = (itemId, newQuantity) => {
+    setCartItems(cartItems.map(item => 
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    ));
+  };
+
+  const removeItem = (itemId) => {
+    setCartItems(cartItems.filter(item => item.id !== itemId));
+  };
+
+  const handleCheckout = () => {
+    // Implement checkout logic
+    console.log('Processing checkout...');
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
   };
 
   return (
     <div className="container">
       <h2>Your Cart</h2>
+<<<<<<< HEAD
       {error && (
         <div style={{ color: 'red', marginBottom: '10px', padding: '10px', backgroundColor: '#ffebee' }}>
           {error}
         </div>
       )}
       
+=======
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <>
           <div style={{ marginBottom: '20px' }}>
+<<<<<<< HEAD
             {cartItems.map((item) => (
+=======
+            {cartItems.map(item => (
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
               <div key={item.id} style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+<<<<<<< HEAD
                 padding: '15px',
+=======
+                padding: '10px',
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
                 backgroundColor: 'var(--secondary-bg)',
                 marginBottom: '10px',
                 borderRadius: '8px'
               }}>
+<<<<<<< HEAD
                 <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                   {item.image_url && (
                     <img 
@@ -152,10 +192,26 @@ function Cart() {
                     <p style={{ margin: '0' }}>GH₵{item.price} each</p>
                     <p style={{ margin: '5px 0 0 0' }}>Quantity: {item.quantity}</p>
                   </div>
+=======
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>${item.price}</p>
+                </div>
+                <div>
+                  <input
+                    type="number"
+                    min="1"
+                    value={item.quantity}
+                    onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                    style={{ width: '60px', margin: '0 10px' }}
+                  />
+                  <button onClick={() => removeItem(item.id)} className="btn">Remove</button>
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
                 </div>
               </div>
             ))}
           </div>
+<<<<<<< HEAD
           
           <div style={{
             borderTop: '1px solid var(--border-color)',
@@ -222,6 +278,14 @@ function Cart() {
             >
               {loading ? 'Processing...' : 'Proceed to Checkout'}
             </button>
+=======
+          <div style={{
+            borderTop: '1px solid var(--text-secondary)',
+            paddingTop: '20px'
+          }}>
+            <h3>Total: ${total.toFixed(2)}</h3>
+            <button onClick={handleCheckout} className="btn">Proceed to Checkout</button>
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
           </div>
         </>
       )}

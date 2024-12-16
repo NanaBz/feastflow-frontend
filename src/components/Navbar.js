@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+<<<<<<< HEAD
 import { useCart } from '../context/CartContext';
 
 function Navbar() {
   const { isLoggedIn, logout } = useAuth();
   const { cartItems } = useCart();
+=======
+
+function Navbar() {
+  const { isLoggedIn, logout } = useAuth();
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -15,6 +21,7 @@ function Navbar() {
 
   return (
     <nav style={{
+<<<<<<< HEAD
       backgroundColor: 'var(--primary-bg)',
       padding: '15px 0',
       boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
@@ -64,6 +71,42 @@ function Navbar() {
             </>
           )}
         </div>
+=======
+      backgroundColor: 'var(--secondary-bg)',
+      padding: '1rem',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }}>
+      <Link to="/" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontSize: '1.5rem' }}>
+        FeastFlow
+      </Link>
+      <div style={{ display: 'flex', gap: '1rem' }}>
+        {isLoggedIn ? (
+          <>
+            <Link to="/menu" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Menu</Link>
+            <Link to="/cart" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Cart</Link>
+            <Link to="/order-tracking" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Orders</Link>
+            <Link to="/profile" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Profile</Link>
+            <button 
+              onClick={handleLogout}
+              style={{ 
+                background: 'none', 
+                border: 'none', 
+                color: 'var(--text-primary)', 
+                cursor: 'pointer' 
+              }}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Login</Link>
+            <Link to="/register" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Register</Link>
+          </>
+        )}
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
       </div>
     </nav>
   );

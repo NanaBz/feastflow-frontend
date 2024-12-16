@@ -8,6 +8,7 @@ function Register() {
     username: '',
     email: '',
     password: '',
+<<<<<<< HEAD
     dietary_restrictions: ''
   });
   const [error, setError] = useState('');
@@ -27,6 +28,19 @@ function Register() {
       console.error('Registration error:', err);
     } finally {
       setLoading(false);
+=======
+    dietary_restrictions: '',
+    allergies: ''
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await createUser(formData);
+      navigate('/login');
+    } catch (error) {
+      console.error('Registration failed:', error);
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
     }
   };
 
@@ -34,11 +48,14 @@ function Register() {
     <div className="container">
       <div style={{ maxWidth: '400px', margin: '40px auto', padding: '20px' }}>
         <h2>Create FeastFlow Account</h2>
+<<<<<<< HEAD
         {error && (
           <div style={{ color: 'red', marginBottom: '10px' }}>
             {error}
           </div>
         )}
+=======
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -46,7 +63,10 @@ function Register() {
             placeholder="Username"
             value={formData.username}
             onChange={(e) => setFormData({...formData, username: e.target.value})}
+<<<<<<< HEAD
             required
+=======
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
           />
           <input
             type="email"
@@ -54,7 +74,10 @@ function Register() {
             placeholder="Email"
             value={formData.email}
             onChange={(e) => setFormData({...formData, email: e.target.value})}
+<<<<<<< HEAD
             required
+=======
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
           />
           <input
             type="password"
@@ -62,6 +85,7 @@ function Register() {
             placeholder="Password"
             value={formData.password}
             onChange={(e) => setFormData({...formData, password: e.target.value})}
+<<<<<<< HEAD
             required
           />
           <textarea
@@ -78,6 +102,22 @@ function Register() {
           >
             {loading ? 'Creating Account...' : 'Register'}
           </button>
+=======
+          />
+          <textarea
+            className="form-control"
+            placeholder="Dietary Restrictions"
+            value={formData.dietary_restrictions}
+            onChange={(e) => setFormData({...formData, dietary_restrictions: e.target.value})}
+          />
+          <textarea
+            className="form-control"
+            placeholder="Allergies"
+            value={formData.allergies}
+            onChange={(e) => setFormData({...formData, allergies: e.target.value})}
+          />
+          <button type="submit" className="btn">Register</button>
+>>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
         </form>
         <div style={{ 
           marginTop: '20px', 
