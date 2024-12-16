@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import { useAuth } from '../context/AuthContext';
 
 function Home() {
@@ -58,31 +57,6 @@ function Home() {
             <p>Collect loyalty points with every purchase</p>
           </div>
         </div>
-=======
-
-function Home() {
-  return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      padding: '20px'
-    }}>
-      <h1 style={{ fontSize: '3rem', marginBottom: '20px' }}>Welcome to FeastFlow</h1>
-      <p style={{ fontSize: '1.2rem', maxWidth: '600px', marginBottom: '30px' }}>
-        Your one-stop solution for convenient campus dining. Order food, track deliveries, and earn rewards!
-      </p>
-      <div style={{ display: 'flex', gap: '20px' }}>
-        <Link to="/login">
-          <button className="btn">Login</button>
-        </Link>
-        <Link to="/register">
-          <button className="btn">Register</button>
-        </Link>
->>>>>>> dedc6bf2bfc31cb5a0aaff2d59602e572141f0fd
       </div>
     </div>
   );
