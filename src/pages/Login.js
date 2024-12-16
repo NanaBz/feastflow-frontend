@@ -1,78 +1,73 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { loginUser } from '../utils/api';
+import '../styles/Login.css';
 
 function Login() {
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
-    rememberMe: false
+    password: ''
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your login logic here
-    login(); // Set logged in state
-    navigate('/dashboard');
-  };
-
-  const handleGoogleSuccess = (credentialResponse) => {
-    const decoded = jwtDecode(credentialResponse.credential);
-    console.log(decoded);
-    login(); // Set logged in state
-    navigate('/dashboard');
+    setLoading(true);
+    setError('');
+    
+    try {
+      const response = await loginUser(formData);
+      if (!response.data || !response.data.id) {
+        throw new Error('Invalid response from server');
+      }
+      login(response.data);
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Invalid email or password');
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="container">
-      <div style={{ maxWidth: '400px', margin: '40px auto', padding: '20px' }}>
+    <div className="login-container">
+      <div className="login-box">
         <h2>Login to FeastFlow</h2>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-          />
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Password"
-            value={formData.password}
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
-          />
-          <div style={{ margin: '10px 0' }}>
+          <div className="form-group">
+            <label>Email:</label>
             <input
-              type="checkbox"
-              id="rememberMe"
-              checked={formData.rememberMe}
-              onChange={(e) => setFormData({...formData, rememberMe: e.target.checked})}
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              required
             />
-            <label htmlFor="rememberMe"> Remember me</label>
           </div>
-          <button type="submit" className="btn">Login</button>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              required
+            />
+          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
         </form>
-        <div style={{ margin: '20px 0' }}>
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={() => console.log('Login Failed')}
-          />
-        </div>
-        <div style={{ 
-          marginTop: '20px', 
-          textAlign: 'center',
-          color: 'var(--text-secondary)'
-        }}>
-          New to FeastFlow?{' '}
-          <Link to="/register" style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>
+        <p>
+          Don't have an account?{' '}
+          <span onClick={() => navigate('/register')} style={{ cursor: 'pointer', color: 'var(--accent-color)' }}>
             Register here
-          </Link>
-        </div>
+          </span>
+        </p>
       </div>
     </div>
   );
