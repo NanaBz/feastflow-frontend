@@ -2,6 +2,7 @@
   "name": "feastflow",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://NanaBz.github.io/feastflow-frontend",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -39,5 +40,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://NanaBz.github.io/feastflow-frontend"
+  "devDependencies": {
+    "gh-pages": "^6.1.0"
+  }
 }
