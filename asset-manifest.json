@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/feastflow-frontend/static/css/main.3bc8737a.css",
+    "main.js": "/feastflow-frontend/static/js/main.90dac14b.js",
+    "index.html": "/feastflow-frontend/index.html",
+    "main.3bc8737a.css.map": "/feastflow-frontend/static/css/main.3bc8737a.css.map",
+    "main.90dac14b.js.map": "/feastflow-frontend/static/js/main.90dac14b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3bc8737a.css",
+    "static/js/main.90dac14b.js"
+  ]
+}
