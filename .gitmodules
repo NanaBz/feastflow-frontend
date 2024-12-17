@@ -1,0 +1,7 @@
+[submodule "Exam"]
+    path = Exam
+    url = https://github.com/NanaBz/Exam
+
+[submodule "feastflow"]
+    path = feastflow
+    url = https://github.com/NanaBz/feastflow-frontend  
