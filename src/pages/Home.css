@@ -1,0 +1,13 @@
+.home {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  .home h2 {
+    color: #333;
+  }
+  
+  .home .content {
+    margin-top: 20px;
+  }

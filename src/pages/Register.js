@@ -94,4 +94,8 @@ function Register() {
   );
 }
 
+<<<<<<< HEAD
 export default Register;
+=======
+export default Register;
+>>>>>>> 31aec62 (Fix routing and deployment issues)
