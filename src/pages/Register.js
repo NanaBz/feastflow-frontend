@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../utils/api';
 
 function Register() {
@@ -23,79 +23,47 @@ function Register() {
       alert('Registration successful! Please login.');
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed');
+      setError(err.message);
       console.error('Registration error:', err);
-    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="container">
-      <div style={{ maxWidth: '400px', margin: '40px auto', padding: '20px' }}>
-        <h2>Create FeastFlow Account</h2>
-        {error && (
-          <div style={{ color: 'red', marginBottom: '10px' }}>
-            {error}
-          </div>
-        )}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Username"
-            value={formData.username}
-            onChange={(e) => setFormData({...formData, username: e.target.value})}
-            required
-          />
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            required
-          />
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Password"
-            value={formData.password}
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
-            required
-          />
-          <textarea
-            className="form-control"
-            placeholder="Dietary Restrictions (optional)"
-            value={formData.dietary_restrictions}
-            onChange={(e) => setFormData({...formData, dietary_restrictions: e.target.value})}
-          />
-          <button 
-            type="submit" 
-            className="btn"
-            disabled={loading}
-            style={{ width: '100%' }}
-          >
-            {loading ? 'Creating Account...' : 'Register'}
-          </button>
-        </form>
-        <div style={{ 
-          marginTop: '20px', 
-          textAlign: 'center',
-          color: 'var(--text-secondary)'
-        }}>
-          Already have an account?{' '}
-          <Link to="/login" style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>
-            Login here
-          </Link>
-        </div>
-      </div>
+    <div>
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={formData.username}
+          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Dietary Restrictions"
+          value={formData.dietary_restrictions}
+          onChange={(e) => setFormData({ ...formData, dietary_restrictions: e.target.value })}
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? 'Registering...' : 'Register'}
+        </button>
+        {error && <p>{error}</p>}
+      </form>
     </div>
   );
 }
 
-<<<<<<< HEAD
 export default Register;
-=======
-export default Register;
->>>>>>> 31aec62 (Fix routing and deployment issues)
